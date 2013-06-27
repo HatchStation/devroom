@@ -1,0 +1,35 @@
+@import "mixins";
+
+.btn{
+  @include no_box_shadow;
+  @include override_gradient_vertical;
+  @include no_border;
+  @include border_radius(0px);
+}
+
+input{
+  @include no_box_shadow;
+  @include border_radius(0px);
+}
+
+body{
+
+  background: #F7F4DF;
+
+  .navbar{
+    
+
+    .navbar-inner{
+      @include no_box_shadow;
+      @include no_border;
+      background: none;
+    }
+  }
+
+  #landing{
+    margin-top: 200px;
+  }
+  #main{
+    margin-top: 60px;
+  }
+}

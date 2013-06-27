@@ -1,0 +1,26 @@
+@mixin border_radius($radius) {
+  -webkit-border-radius: $radius !important;
+  -moz-border-radius: $radius !important;
+  border-radius: $radius !important;
+}
+
+@mixin no_box_shadow{
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  box-shadow: none !important;
+}
+
+@mixin no_border{
+  border: none;
+}
+
+@mixin override_gradient_vertical {
+  background-image: none;
+  background-image: none;
+  background-image: none;
+  background-image: none;
+  background-image: none;
+  background-image: none;
+  background-repeat: no-repeat;
+  filter: none;
+}

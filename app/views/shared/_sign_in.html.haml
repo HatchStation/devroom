@@ -1,0 +1,14 @@
+- if current_user
+  Logged In
+  = link_to :root
+- else
+  = form_for("user", :url => user_session_path) do |f|
+    %div
+      = f.label :email
+      = f.email_field :email, :autofocus => true
+    %div
+      = f.label :password
+      = f.password_field :password
+    %div
+      = f.submit "Sign in", :class => "btn btn-primary"
+  = link_to "Sign up", new_user_registration_path, :class => "btn btn-info"
