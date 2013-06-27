@@ -37,6 +37,6 @@ class User
   validates :name, presence: true
 
   has_many :messages
-  belongs_to :conversation
+  has_and_belongs_to_many :conversations
 
 end

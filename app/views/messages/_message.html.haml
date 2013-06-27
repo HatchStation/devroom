@@ -1,0 +1,4 @@
+%p
+  %b= message.user.name + ":"
+  =message.text
+  %em.pull-right= message.created_at.to_datetime.strftime('%H:%M')

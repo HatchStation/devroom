@@ -2,6 +2,9 @@ DevRoom::Application.routes.draw do
   devise_for :users
 
   get 'room' => 'room#index'
+
+  get 'conversations/:id' => 'room#start_conversation', as: 'start_conversation'
+  post 'messages/:id' => 'room#new_message', as: 'new_message'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

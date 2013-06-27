@@ -1,0 +1,2 @@
+$("#conversations").append("<%= j render @conversation %>");
+$("#subscriptions").append('<%= j subscribe_to "/conversations/#{@conversation.id}/messages"%>')

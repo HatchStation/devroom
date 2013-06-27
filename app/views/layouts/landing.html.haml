@@ -16,10 +16,9 @@
     = render "shared/navbar"
 
     .container-fluid#landing
-      /= bootstrap_flash
       .row-fluid
         .span3
-        .span3
+        .span3{:style => "border-right: 1px solid #CECBBB;"}
           %h4 Ask for help
           %h4 Offer help
           %h4 Share collective knowledge
@@ -29,7 +28,7 @@
 
       .row-fluid
         .span12
-          = bootstrap_flash
+          /= bootstrap_flash
           = yield      
     / Javascripts
     / Placed at the end of the document so the pages load faster

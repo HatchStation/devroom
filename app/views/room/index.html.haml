@@ -1,11 +1,16 @@
+=content_for :scripts do
+  #subscriptions
+    - @conversations.each do |conversation|
+      = subscribe_to "/conversations/#{conversation.id}/messages"
+
 =content_for :sidebar do
   #userlist.pane
-    %p.heading Users
+    %p.heading Team
     %ul.unstyled
       -@users.each do |user|
+        - next if user == current_user
         %li
-          %i.icon-circle{:style => "color: green"}
-          = user.name
+          =link_to user.name, start_conversation_path(user.id), remote: true
   .pane
     %p.heading You
     - if current_user
@@ -13,4 +18,8 @@
       =link_to "Profile", "#", class: "btn btn-success"
       =link_to "Logout", destroy_user_session_path, class: "btn btn-info", method: :delete
 
-Main Content
+.row-fluid
+  .span6
+  .span6
+    .row-fluid#conversations
+      = render @conversations

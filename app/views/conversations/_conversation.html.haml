@@ -1,0 +1,11 @@
+%div{:style => "width:48%; float:left; margin-right:2%;"}
+  .pane.conversation{id: "conversation_#{conversation.id}"}
+    %p.heading
+      = conversation.users.map(&:name).join(", ")
+    .messages
+      - conversation.messages.limit(5).each do |message|
+        = render message
+    .new_message
+      = form_for 'message', url: new_message_path(conversation), remote: true do |f|
+        = f.text_area :text   
+        = f.submit "Post", class: "btn btn-success"   

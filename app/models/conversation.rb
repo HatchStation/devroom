@@ -3,5 +3,5 @@ class Conversation
   include Mongoid::Timestamps
 
   has_many :messages
-  has_many :participants, class_name: 'User', inverse_of: 'conversation'
+  has_and_belongs_to_many :users
 end

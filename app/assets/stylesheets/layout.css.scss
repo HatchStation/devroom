@@ -7,7 +7,7 @@
   @include border_radius(0px);
 }
 
-input{
+input, textarea{
   @include no_box_shadow;
   @include border_radius(0px);
 }
@@ -24,17 +24,16 @@ body{
       background: none;
     }
     #logo{
-      p{
+      img{
         padding: 1em 1em;
       }
     }
   }
 
   #landing{
-    margin-top: 200px;
+    margin-top: 170px;
   }
   #main{
-    margin-top: 70px;
 
     .pane{
       background: white;
@@ -49,6 +48,15 @@ body{
 
     #userlist{
       height: 400px;
+    }
+
+    #conversations{
+
+      .conversation{
+        .messages{
+          height: 120px;
+        }
+      }
     }
   }
 }
