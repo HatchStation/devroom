@@ -1,9 +1,32 @@
 body{
   font-family: 'Open Sans';
 }
+.btn{
+  text-shadow: 0px 0px #FFF;
+}
 
 #logo{
-  font-size: 24px;
-  color: #333;
-  padding: 0.5em 1em;
+  text-decoration: none;
+  p{
+    font-family: Helvetica;
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+  }
+}
+
+#landing{
+  h4{
+    font-weight: 300;
+    font-size: 24px;
+    line-height: 30px;
+  }
+}
+
+.pane{
+  p.heading{
+    color: #CCC;
+    font-size: 16px;
+    font-weight: bold;
+  }
 }

@@ -1,0 +1,16 @@
+=content_for :sidebar do
+  #userlist.pane
+    %p.heading Users
+    %ul.unstyled
+      -@users.each do |user|
+        %li
+          %i.icon-circle{:style => "color: green"}
+          = user.name
+  .pane
+    %p.heading You
+    - if current_user
+      %h4= current_user.name
+      =link_to "Profile", "#", class: "btn btn-success"
+      =link_to "Logout", destroy_user_session_path, class: "btn btn-info", method: :delete
+
+Main Content

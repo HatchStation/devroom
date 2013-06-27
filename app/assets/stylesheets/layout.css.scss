@@ -17,12 +17,16 @@ body{
   background: #F7F4DF;
 
   .navbar{
-    
 
     .navbar-inner{
       @include no_box_shadow;
       @include no_border;
       background: none;
+    }
+    #logo{
+      p{
+        padding: 1em 1em;
+      }
     }
   }
 
@@ -30,6 +34,21 @@ body{
     margin-top: 200px;
   }
   #main{
-    margin-top: 60px;
+    margin-top: 70px;
+
+    .pane{
+      background: white;
+      border:1px solid #E7E7E7;
+      padding: 10px;
+      margin-bottom: 15px;
+      p.heading{
+        border-bottom: 1px solid #EEE;
+        padding: 5px 0px;
+      }
+    }
+
+    #userlist{
+      height: 400px;
+    }
   }
 }

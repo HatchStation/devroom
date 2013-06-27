@@ -11,7 +11,7 @@
 }
 
 @mixin no_border{
-  border: none;
+  border: none !important;
 }
 
 @mixin override_gradient_vertical {

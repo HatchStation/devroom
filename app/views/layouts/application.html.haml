@@ -16,9 +16,11 @@
     = render "shared/navbar"
 
     .container-fluid#main
+      /= bootstrap_flash
       .row-fluid
-        .span12
-          = bootstrap_flash
+        .span2
+          = yield :sidebar
+        .span10
           = yield
 
     / Javascripts

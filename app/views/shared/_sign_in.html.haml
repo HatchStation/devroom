@@ -1,14 +1,18 @@
 - if current_user
-  Logged In
-  = link_to :root
+  %p You are logged In
+  %p
+    = link_to "Go to Room", room_path, class: "btn btn-primary"
+  %p
+    = link_to "Sign Out", destroy_user_session_path, class: "btn btn-info"
 - else
-  = form_for("user", :url => user_session_path) do |f|
+  = form_for("user", url: user_session_path) do |f|
     %div
       = f.label :email
-      = f.email_field :email, :autofocus => true
+      = f.email_field :email, autofocus: true
     %div
       = f.label :password
       = f.password_field :password
     %div
-      = f.submit "Sign in", :class => "btn btn-primary"
-  = link_to "Sign up", new_user_registration_path, :class => "btn btn-info"
+      = f.submit "Sign in", class: "btn btn-primary"
+  Or    
+  = link_to "Sign up", new_user_registration_path
