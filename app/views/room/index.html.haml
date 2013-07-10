@@ -1,16 +1,11 @@
-=content_for :scripts do
-  #subscriptions
-    - @conversations.each do |conversation|
-      = subscribe_to "/conversations/#{conversation.id}/messages"
-
 =content_for :sidebar do
   #userlist.pane
     %p.heading Team
     %ul.unstyled
       -@users.each do |user|
         - next if user == current_user
-        %li
-          =link_to user.name, start_conversation_path(user.id), remote: true
+        /%li
+        /  =link_to user.name, start_conversation_path(user.id), remote: true
   .pane
     %p.heading You
     - if current_user
@@ -23,3 +18,10 @@
   .span6
     .row-fluid#conversations
       = render @conversations
+
+=content_for :scripts do
+  = subscribe_to "/users/list"
+  #subscriptions
+    - @conversations.each do |conversation|
+      = subscribe_to "/conversations/#{conversation.id}/messages"
+    

@@ -39,4 +39,8 @@ class User
   has_many :messages
   has_and_belongs_to_many :conversations
 
+  def self.user_list
+    only(:id, :name, :online).as_json
+  end
+
 end

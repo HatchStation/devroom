@@ -29,7 +29,22 @@
       .row-fluid
         .span12
           /= bootstrap_flash
-          = yield      
+          = yield
+
+      .row-fluid      
+        .span4
+        .span4#why
+          %p DevRoom is an attempt to improve conversations among developers at workplaces.
+
+          %p Thanks to the ever changing nature of technology, a single day in the lives of most developers involves learning new things, reading docs, building stuff, breaking stuff and pushing the shiny parts to the world.
+          
+          %p This experience although enriching in it's own way also has the downside of losing time trying to do the same things over and over again.
+
+
+
+
+
+        .span4
     / Javascripts
     / Placed at the end of the document so the pages load faster
     = javascript_include_tag "application"

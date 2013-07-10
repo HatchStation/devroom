@@ -18,6 +18,7 @@ gem 'therubyracer'
 gem 'turbolinks'
 gem 'uglifier', '>= 1.0.3'
 gem 'twitter-bootstrap-rails'
+gem 'angularjs-rails'
 
 group :development do
   gem 'pry-rails'

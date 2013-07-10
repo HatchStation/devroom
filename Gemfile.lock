@@ -46,6 +46,7 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
     addressable (2.3.5)
+    angularjs-rails (1.0.7)
     arel (4.0.0)
     atomic (1.1.10)
     bcrypt-ruby (3.0.1)
@@ -195,6 +196,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  angularjs-rails
   bson_ext
   cancan
   coffee-rails
