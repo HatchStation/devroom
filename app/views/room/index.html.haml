@@ -4,8 +4,11 @@
     %ul.unstyled
       -@users.each do |user|
         - next if user == current_user
-        /%li
-        /  =link_to user.name, start_conversation_path(user.id), remote: true
+        %li
+          - user_status_color = user.online ? 'lightgreen' : 'lightgrey'
+          %i.icon-circle{style: "color: #{user_status_color}"}
+          =link_to user.name, start_conversation_path(user.id), remote: true
+          
   .pane
     %p.heading You
     - if current_user
@@ -20,8 +23,9 @@
       = render @conversations
 
 =content_for :scripts do
-  = subscribe_to "/users/list"
   #subscriptions
+    = subscribe_to "/users/list"
+    = subscribe_to "/conversations/#{current_user.id}/active"
     - @conversations.each do |conversation|
       = subscribe_to "/conversations/#{conversation.id}/messages"
     

@@ -3,6 +3,6 @@ class Message
   include Mongoid::Timestamps
 
   field :text
-  belongs_to :conversation
+  belongs_to :conversation, dependent: :destroy
   belongs_to :user
 end
