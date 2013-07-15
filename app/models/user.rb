@@ -37,6 +37,7 @@ class User
   validates :name, presence: true
 
   has_many :messages
+  has_many :tasks
   has_and_belongs_to_many :conversations
 
   def self.user_list

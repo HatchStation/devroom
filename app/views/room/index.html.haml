@@ -7,7 +7,10 @@
         %li
           - user_status_color = user.online ? 'lightgreen' : 'lightgrey'
           %i.icon-circle{style: "color: #{user_status_color}"}
-          =link_to user.name, start_conversation_path(user.id), remote: true
+          - if user.online?
+            = link_to user.name, start_conversation_path(0,user.id), remote: true
+          -else
+            = user.name
           
   .pane
     %p.heading You
@@ -18,6 +21,12 @@
 
 .row-fluid
   .span6
+    .row-fluid
+      = render "tasks/new_task"
+      
+    #tasks
+      = render @tasks
+
   .span6
     .row-fluid#conversations
       = render @conversations
@@ -25,7 +34,9 @@
 =content_for :scripts do
   #subscriptions
     = subscribe_to "/users/list"
+    = subscribe_to "/tasks/list"
     = subscribe_to "/conversations/#{current_user.id}/active"
     - @conversations.each do |conversation|
       = subscribe_to "/conversations/#{conversation.id}/messages"
+      = subscribe_to "/conversations/#{conversation.id}/archive"
     

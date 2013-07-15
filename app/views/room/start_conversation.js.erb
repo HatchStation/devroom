@@ -1,6 +1,26 @@
-<% @conversation.users.each do |user|%>
-  <% publish_to "/conversations/#{user.id}/active" do %>
+<% if @case == 3 %>
+  // This is special case. Refer to start_conversation in Room controller for the cases
+
+  // Publish to current user the conversation she was added to
+  <% publish_to "/conversations/#{current_user.id}/active" do %>
     $("#conversations").append("<%= j render @conversation %>");
     $("#subscriptions").append('<%= j subscribe_to "/conversations/#{@conversation.id}/messages"%>')  
+    $("#subscriptions").append('<%= j subscribe_to "/conversations/#{@conversation.id}/archive"%>')  
+  <% end%>
+  // Publish to others the removal of existing conv and add it back again to reflect the addition of new user
+  <% @conversation.users.each do |user|%>
+    <% publish_to "/conversations/#{user.id}/active" do %>
+      $("#conversation_<%= j @conversation.id.to_s %>").remove()
+      $("#conversations").append("<%= j render @conversation %>");
+    <%end%>
   <%end%>
-<%end%>
+
+<% else%>
+  <% @conversation.users.each do |user|%>
+    <% publish_to "/conversations/#{user.id}/active" do %>
+      $("#conversations").append("<%= j render @conversation %>");
+      $("#subscriptions").append('<%= j subscribe_to "/conversations/#{@conversation.id}/messages"%>')  
+      $("#subscriptions").append('<%= j subscribe_to "/conversations/#{@conversation.id}/archive"%>')  
+    <%end%>
+  <%end%>
+<% end%>

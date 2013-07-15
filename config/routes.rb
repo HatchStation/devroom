@@ -3,7 +3,9 @@ DevRoom::Application.routes.draw do
 
   get 'room' => 'room#index'
 
-  get 'conversations/:id' => 'room#start_conversation', as: 'start_conversation'
+  get 'conversations/:task_id/:user_id' => 'room#start_conversation', as: 'start_conversation'
+  delete 'conversations/:id' => 'room#archive_conversation', as: 'archive_conversation' 
+  post 'tasks' => 'room#new_task', as: 'new_task'
   post 'messages/:id' => 'room#new_message', as: 'new_message'
   # The priority is based upon order of creation:
   # first created -> highest priority.

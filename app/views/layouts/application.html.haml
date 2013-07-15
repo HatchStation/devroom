@@ -14,7 +14,7 @@
 
   %body
     = render "shared/navbar"
-    #user_id.hide= current_user.id
+    #user_id.hide= current_user.id if current_user
     .container-fluid#main
       /= bootstrap_flash
       .row-fluid

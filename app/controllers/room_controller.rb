@@ -3,20 +3,63 @@ class RoomController < ApplicationController
 
   def index
     @users = User.only(:name, :online, :id).all
+    @tasks = Task.all.desc(:created_at)
     @conversations = current_user.conversations
   end
 
   def start_conversation
-    # Get the user the current_user wants to converse with
-    second_user = User.find(params[:id])
-    return unless second_user
 
-    # Create conversation and add both as participants
-    @conversation = Conversation.new
-    @conversation.users = [current_user, second_user]
+    # There are 3 possible scenarios
+    # 1.) General conversation b/w two persons and we create one and add both participants
+    # 2.) Conversation on a task and we create one with both particpants with task assigned
+    # 3.) Conversation is already present for a task and we just want to add a new participant to it
+
+    # Get task if any. Cases 2 and 3
+    if params[:task_id] != "0"
+      task = Task.find(params[:task_id])
+      
+      # Case 3
+      if task.conversation
+        @case = 3
+        @conversation = task.conversation
+        @conversation.users << current_user
+      # Case 2
+      else
+        @conversation = Conversation.new
+        @conversation.task = task  
+        second_user = User.find(params[:user_id])
+        @conversation.users = [current_user, second_user]    
+      end
+    # Case 1
+    else
+      @conversation = Conversation.new
+      second_user = User.find(params[:user_id])
+      @conversation.users = [current_user, second_user]
+    end
+      
     if @conversation.save
       render
     else
+      @error = @conversation.errors.full_messages.join(",")
+      render "shared/error"
+    end
+  end
+
+  def archive_conversation
+    @conversation = Conversation.find(params[:id])
+    @conversation.update_attributes(archived: true)
+  end
+
+  def new_task
+    @task = Task.new
+    @task.description =  params[:description]
+    @task.user = current_user
+
+    if @task.save
+      render
+    else
+      @error = @task.errors.full_messages.join(",")
+      render "shared/error"
     end
   end
 
@@ -28,6 +71,8 @@ class RoomController < ApplicationController
     if @message.save
       render
     else
+      @error = @message.errors.full_messages.join(",")
+      render "shared/error"
     end
 
   end

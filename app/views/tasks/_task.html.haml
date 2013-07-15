@@ -1,0 +1,5 @@
+.row-fluid
+  = link_to start_conversation_path(task,task.user.id), "data-toggle" => "tooltip", title: "Click to start a conversation on this subject", remote: true do
+    .span12.pane
+      %p= task.description
+      %small.muted= "by  #{task.user.name} #{distance_of_time_in_words_to_now task.created_at} ago"

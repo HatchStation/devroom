@@ -1,0 +1,3 @@
+<% publish_to "/conversations/#{@conversation.id}/archive" do %>
+  $("#conversation_<%= j @conversation.id.to_s %>").remove();
+<% end %>

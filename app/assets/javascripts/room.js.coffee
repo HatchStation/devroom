@@ -7,7 +7,7 @@ $(document).ready ->
 
   PrivatePub.subscribe "/users/list", (data, channel) ->
     $("#userlist ul").html("")
-    console.log(data)
+    #console.log(data)
     current_user = $("#user_id").text()
     for user in data.users
 
@@ -25,11 +25,15 @@ $(document).ready ->
                 class: 'icon-circle' 
               })
       link = $("<a/>", {
-                href: '/conversations/' + user._id.$oid,
+                href: '/conversations/0/' + user._id.$oid,
                 text: user.name,
                 'data-remote': true,
               })
-      $("<li/>").append(icon).append(link).appendTo("#userlist ul")
+
+      if user.online
+        $("<li/>").append(icon).append(link).appendTo("#userlist ul")
+      else
+        $("<li/>").append(icon).append(user.name).appendTo("#userlist ul")
 
 
   #window.onbeforeunload = (e) ->

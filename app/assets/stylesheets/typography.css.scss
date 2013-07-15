@@ -33,5 +33,14 @@ body{
     color: #CCC;
     font-size: 16px;
     font-weight: bold;
+
+    a{
+      color: #CCC;
+      text-decoration: none;
+    }
+  }
+  em.timestamp{
+    color: #CCC;
+    font-size: 9px;
   }
 }

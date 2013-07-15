@@ -1,0 +1,4 @@
+.span12.pane
+  = form_for "task", url: new_task_path, remote: true do |f|
+    %textarea.span12{name: "description", placeholder: "A question you have / A task you're working on / A briefing you need"}
+    =submit_tag "Post", class: "btn btn-primary"
