@@ -19,6 +19,8 @@ gem 'turbolinks'
 gem 'uglifier', '>= 1.0.3'
 gem 'twitter-bootstrap-rails'
 gem 'angularjs-rails'
+gem 'capistrano'
+gem 'rvm-capistrano'
 
 group :development do
   gem 'pry-rails'
