@@ -47,6 +47,6 @@ namespace :deploy do
      run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
      run "#{try_sudo} chmod 777 #{File.join(current_path,'tmp/')}"
      run "#{try_sudo} chmod 777 #{File.join(current_path,'log/')}"
-     run "cd #{current_path} && RAILS_ENV=production bundle exec rackup private_pub.ru -s thin"
+     run "cd #{current_path} && RAILS_ENV=production bundle exec rackup private_pub.ru -s thin -E production -D"
    end
 end
