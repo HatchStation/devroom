@@ -4,7 +4,7 @@ require "rvm/capistrano"
 
 default_run_options[:pty] = true
 
-set :repository, "git@bitbucket.org:Bornfree/devroom.git"
+set :repository, "git@github.com:bornfree/devroom.git"
 set :scm, :git
 set :scm_verbose, true
 
