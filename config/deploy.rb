@@ -3,6 +3,7 @@ require "rvm/capistrano"
 #require "capistrano/ext/multistage"
 
 default_run_options[:pty] = true
+ssh_options[:forward_agent] = true
 
 set :repository, "git@github.com:bornfree/devroom.git"
 set :scm, :git
