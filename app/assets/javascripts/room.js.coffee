@@ -4,7 +4,6 @@
 $(document).ready ->
 
   # User list online/offline updater.
-
   PrivatePub.subscribe "/users/list", (data, channel) ->
     $("#userlist ul").html("")
     #console.log(data)
@@ -35,6 +34,16 @@ $(document).ready ->
       else
         $("<li/>").append(icon).append(user.name).appendTo("#userlist ul")
 
+
+  # Update 'task post times' every minute      
+  setInterval () ->
+    $(".post_time_of_task").each ->
+      minutes = parseInt($(this).text())
+      $(this).html(minutes+1)
+      task = $(this).parent().parent()
+      back_color = if (minutes > 60) then 195 else (255-minutes)
+      task.css("background","rgba(255," + back_color + "," + back_color + ",1)")
+  , 1000*60
 
   #window.onbeforeunload = (e) ->
   #  $.ajax({ 
