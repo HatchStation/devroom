@@ -10,7 +10,7 @@
   // Publish to others the removal of existing conv and add it back again to reflect the addition of new user
   <% @conversation.users.each do |user|%>
     <% publish_to "/conversations/#{user.id}/active" do %>
-      $("#conversation_<%= j @conversation.id.to_s %>").remove()
+      $("#conversation_<%= j @conversation.id.to_s %>").remove();
       $("#conversations").append("<%= j render @conversation %>");
     <%end%>
   <%end%>

@@ -1,3 +1,7 @@
+<% conversation = "#conversation_#{@conversation.id.to_s}" %>
+
 <% publish_to "/conversations/#{@conversation.id}/messages" do %>
-  $("#conversation_<%= j @conversation.id.to_s %> .messages").append("<%= j render(@message) %>");
+  $("<%= conversation %> .messages").append("<%= j render(@message) %>");
 <% end %>
+
+$("<%= conversation %> .new_message textarea[name='message[text]']").val('');
