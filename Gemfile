@@ -21,6 +21,7 @@ gem 'twitter-bootstrap-rails'
 gem 'angularjs-rails'
 gem 'capistrano'
 gem 'rvm-capistrano'
+gem 'whenever'
 
 group :development do
   gem 'pry-rails'

@@ -1,11 +1,17 @@
 - minutes = ((Time.now - task.created_at)/60).round
-- back_color = (minutes > 60)? 195 : 255 - minutes
+- task_color = (minutes > 60)? 75 : 255 - 3*minutes
 
-.row-fluid
+.row-fluid.task
   = link_to start_conversation_path(task,task.user.id), "data-toggle" => "tooltip", title: "Click to start a conversation on this subject", remote: true, class: "task_link" do
-    .span12.pane.task{style: "background: rgba(255, #{back_color}, #{back_color},1)"}
+    .span12.pane
       %p= task.description
       %small
         = "by  #{task.user.name}"
         .post_time_of_task= minutes
         minutes ago
+  - if task.resolved?
+    %a{href:"javascript:void(0)", "data-toggle" => "tooltip", title: "Resolved"}
+      %i.icon-ok-sign{style: "color: #3BBC3B;"}
+  -else
+    %a{href:"javascript:void(0)", "data-toggle" => "tooltip", title: "Unresolved"}
+      %i.icon-exclamation-sign.task_status{style: "color: rgba(255, #{task_color}, #{task_color},1)"}

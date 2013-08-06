@@ -7,6 +7,7 @@ DevRoom::Application.routes.draw do
   delete 'conversations/:id' => 'room#archive_conversation', as: 'archive_conversation' 
   post 'tasks' => 'room#new_task', as: 'new_task'
   post 'messages/:id' => 'room#new_message', as: 'new_message'
+  get '/alive' => 'room#alive', as: 'alive'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

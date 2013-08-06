@@ -1,5 +1,6 @@
 class User
   include Mongoid::Document
+  include Mongoid::Timestamps
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
@@ -42,6 +43,13 @@ class User
 
   def self.user_list
     only(:id, :name, :online).as_json
+  end
+
+  def self.check_for_inactive_users
+    User.each do |u|
+      u.update_attribute(:online, false) if (u.updated_at < 2.minutes.ago)
+    end
+    PrivatePub.publish_to "/users/list", :users => User.user_list
   end
 
 end

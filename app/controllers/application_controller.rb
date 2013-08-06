@@ -1,24 +1,22 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  before_filter :evaluate_user_status
 
   def after_sign_in_path_for(resource)
-    current_user.update_attribute(:online, true)
-    PrivatePub.publish_to "/users/list", :users => User.user_list
+    update_user_list(true)
     room_path
   end
 
   def after_sign_out_path_for(resource)
-    current_user.update_attribute(:online, false)
-    PrivatePub.publish_to "/users/list", :users => User.user_list
+    update_user_list(false)
     root_path
   end
-
-  def evaluate_user_status
-    return unless current_user
-    current_user.update_attribute(:online, true) unless current_user.online?
-  end
   
+  # This action updates the status of current user and then broadcasts user list to everyone
+  def update_user_list(status)
+    current_user.update_attribute(:online, status)
+    PrivatePub.publish_to "/users/list", :users => User.user_list
+  end
+
   protected
  
   def devise_parameter_sanitizer

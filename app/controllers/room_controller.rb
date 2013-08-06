@@ -3,8 +3,9 @@ class RoomController < ApplicationController
 
   def index
     @users = User.only(:name, :online, :id).all
-    @tasks = Task.all.desc(:created_at)
+    @tasks = Task.all.asc(:resolved).desc(:created_at)
     @conversations = current_user.conversations
+    update_user_list(true)
   end
 
   def start_conversation
@@ -75,6 +76,11 @@ class RoomController < ApplicationController
       render "shared/error"
     end
 
+  end
+
+  def alive
+    current_user.touch
+    render text: "OK"    
   end
 
 end

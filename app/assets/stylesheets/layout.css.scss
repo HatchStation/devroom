@@ -70,9 +70,19 @@ body{
 
     #tasks
     {
-      .post_time_of_task
-      {
-        display: inline;
+      .task{
+        position: relative;
+
+        .post_time_of_task
+        {
+          display: inline;
+        }
+
+        i{
+          position: absolute;
+          top:5px;
+          right: 8px;
+        }
       }
     }
   }

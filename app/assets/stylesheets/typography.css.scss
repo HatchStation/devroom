@@ -46,8 +46,16 @@ body{
 }
 
 .task_link{
-  color: #BF3000;
   small{
     color: #777;
+  }
+}
+
+.task{
+  i{
+    font-size: 16px;
+  }
+  a{
+    text-decoration: none;
   }
 }

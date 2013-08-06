@@ -40,10 +40,18 @@ $(document).ready ->
     $(".post_time_of_task").each ->
       minutes = parseInt($(this).text())
       $(this).html(minutes+1)
-      task = $(this).parent().parent()
-      back_color = if (minutes > 60) then 195 else (255-minutes)
-      task.css("background","rgba(255," + back_color + "," + back_color + ",1)")
+      task_status = $(this).parent().parent().parent().parent().find(".task_status")
+      task_color = if (minutes > 60) then 75 else (255-3*minutes)
+      task_status.css("color","rgba(255," + task_color + "," + task_color + ",1)")
   , 1000*60
+
+  # Send alive signal every half minute
+  setInterval () ->
+    $.ajax({ 
+            url : "/alive",
+            type: "get"
+          })
+  , 1000*30
 
   #window.onbeforeunload = (e) ->
   #  $.ajax({ 
